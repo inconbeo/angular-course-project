@@ -1,0 +1,9 @@
+<div class="list-group">
+  <app-item
+    (sideAssigned)="onSideAssigned($event)"
+    *ngFor="let char of characters"
+    [character]="char"
+ ></app-item>
+</div>
+
+
