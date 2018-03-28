@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { StarWarsService } from '../star-wars.service';
+
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css']
+
 })
 export class TabsComponent implements OnInit {
-  characters = [
-    {name: 'Luke Skywalker', side: ''},
-    {name: 'Quang Nguyen', side: ''},
-    {name: 'Ngan', side: ''},
-    {name: 'Tim', side: ''}
-  ];
+  characters = [];
   chooseList = 'all';
+  swService: StarWarsService;
 
-  constructor() { }
+  constructor(swService: StarWarsService) {
+    // then we assign seService property to the value we
+    // receive from Angular
+    this.swService = swService;
+  }
 
   ngOnInit() {
   }
@@ -24,22 +27,8 @@ export class TabsComponent implements OnInit {
   }
 
   getCharacters() {
-    if (this.chooseList === 'all') {
-      return this.characters.slice();
-    }
 
-    return this.characters.filter(char => {
-      return this.chooseList === char.side;
-    } );
+    this.characters =  this.swService.getCharacters(this.chooseList);
+    return this.characters;
   }
-
-  onSideChosen(charInfo) {
-    console.log(charInfo);
-    const pos = this.characters.findIndex((char) => {
-      return char.name === charInfo.name;
-
-    });
-    return this.characters[pos].side = charInfo.side;
-  }
-
 }
