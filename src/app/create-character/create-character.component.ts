@@ -12,7 +12,7 @@ export class CreateCharacterComponent implements OnInit {
     {display: 'Light', value: 'light'},
     {display: 'Dark', value: 'dark'}
   ];
-  defaultName = 'Enter here';
+  defaultName = 'Character name';
   swService: StarWarsService;
   constructor(swService: StarWarsService) {
     this.swService = swService;
